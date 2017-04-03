@@ -11,7 +11,6 @@ SCENARIO("null")
 SCENARIO("find")
 {
 	Tree<int> a;
-	a.add(5);
-	bool b=a.find(5);
-	REQUIRE(b == 1);
+	REQUIRE(a.find(0) == 0);
 }
+
