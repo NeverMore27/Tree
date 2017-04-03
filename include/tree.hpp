@@ -17,8 +17,8 @@ private:
 		Node *left;
 		Node *right;
 		Node() {};
-		Node(const T value) : value_(value) { }
-		~Node() {}
+		Node(const T value) : value_(value) { };
+		~Node() {};
 		void show(ostream &out, const int level) const;
 	};
 
