@@ -45,7 +45,7 @@ public:
 		tree = NULL;
 		null_tr = nullptr;
 	};
-	Node* tree_one() { return tree };
+	Node* tree_one() { return tree; };
 	void file_tree(char* name);
 	void add(const T value);
 	bool find(const T value);
