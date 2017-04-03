@@ -19,7 +19,7 @@ private:
 		Node() {};
 		Node(const T value) : value_(value) { }
 		~Node() {}
-		void show(ostream &out, const int level = 0) const;
+		void show(ostream &out, const int level) const;
 	};
 
 	Node *tree, *null_tr;
