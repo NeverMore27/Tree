@@ -1,5 +1,5 @@
 
-#include <tree.hpp>
+include <tree.hpp>
 #include <catch.hpp>
 
 
@@ -11,8 +11,7 @@ SCENARIO("null")
 SCENARIO("add") 
 {
 	Tree <int> a;
-	a.add(5);
-	bool b=a.find(5);
+	bool b=a.add(5);
 	REQUIRE(b == 1);
 }
 SCENARIO("find")
