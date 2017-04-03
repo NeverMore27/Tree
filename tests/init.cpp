@@ -6,7 +6,7 @@
 SCENARIO("null")
 {
 	Tree<int> a;
-	REQUIRE(a.tree_one()=NULL);
+	REQUIRE(a.tree_one()==NULL);
 }
 SCENARIO("add") 
 {
