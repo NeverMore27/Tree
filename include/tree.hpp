@@ -104,6 +104,10 @@ public:
 	};
 
 	void file_tree(char* name);
+	Node* tree_one ()
+	{
+		return tree
+	};
 	bool add(const T value);
 	bool find(const T value);
 	void print(ostream &out) const;
