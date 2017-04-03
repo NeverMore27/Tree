@@ -4,10 +4,10 @@
 template <class T>
 void  Tree<T>::print(ostream &out) const
 {
-	tree->show(out);
+	tree->show(out, 0);
 }
 template <class T>
-void Tree<T>::Node:: show(ostream &out, const int level = 0) const
+void Tree<T>::Node:: show(ostream &out, const int level) const
 {
 	const Node *tr = this;
 	if (tr) tr->right->show(out, level + 1);
