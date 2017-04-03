@@ -106,7 +106,7 @@ public:
 	void file_tree(char* name);
 	Node* tree_one ()
 	{
-		return tree
+		return tree;
 	};
 	bool add(const T value);
 	bool find(const T value);
