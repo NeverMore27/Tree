@@ -18,14 +18,10 @@ void Tree<T>::Node::show(ostream &out, const int level) const
 }
 template <class T>
 bool Tree<T>::add(const T value)
-
 {
 	Node *tr = add_(value);
-
 	if (tr) return true;
-
 	else    return false;
-
 }
 template <class T>
 void Tree<T>::file_tree(char* name)
@@ -46,10 +42,8 @@ void Tree<T>::file_tree(char* name)
 }
 template <class T>
 bool Tree<T>::find(const T value)
-
 {
 	Node *tr = find_(value);
 	if (tr) return true;
 	else    return false;
-
 }
