@@ -36,10 +36,10 @@ private:
 		}
 		delete tr_;
 	}
-	Node * & find_(const T value)
+	Node *  find_(const T value)
 	{
 
-		Node *tr = tree;
+		Node *&tr = tree;
 		while (tr)
 		{
 		       if (tr->value_ != value)
