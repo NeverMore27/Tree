@@ -11,7 +11,6 @@ private:
 	struct Node
 
 	{
-
 		T value_;
 		Node *left;
 		Node *right;
@@ -98,7 +97,7 @@ private:
 public:
 	Tree()
 	{
-		tree = NULL;
+		tree = nullptr;
 		null_tr = nullptr;
 	};
 
