@@ -98,6 +98,26 @@ private:
 		}
 		return 0;
 	}
+int count(Node* tr)
+	{
+		if (!tr) return 0;
+		if ((tr->left == nullptr) && (tr->right == nullptr)) return 1;
+			int l, r;
+		if (tr->left) l = count(tr->left); else l = 0;
+		if (tr->right) r = count(tr->right); else r = 0;
+
+
+		return l + r + 1;
+	}
+void print_pre(const Node * tr, std::ostream &file) const
+	{
+		if (!tr) return;
+		file << tr->value_ << "  ";
+		if (tr->left)
+			print_pre(tr->left, file);
+		if (tr->right)
+			print_pre(tr->right, file);
+	}
 public:
 	Tree()
 	{
@@ -110,6 +130,10 @@ public:
 	{
 		return tree;
 	};
+	int count_()
+	{
+		return count(tree);
+	}
 	bool add(const T value);
 	bool find(const T value);
 	void print(ostream &out) const;
@@ -118,6 +142,21 @@ public:
 		null_tree(tree);
 		null_tree(null_tr);
 	};
+	int count_()
+	{
+		return count(tree);
+	}
+	void pr(char* name)
+	{
+		ofstream file(name);
+		if (file.is_open())
+		{
+			file << count_()<<" ";
+				print_pre(tree, file);
+		
+			file.close();
+		}
+	}
 };
 template <class T>
 void  Tree<T>::print(ostream &out) const
