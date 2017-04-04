@@ -130,10 +130,6 @@ public:
 	{
 		return tree;
 	};
-	int count_()
-	{
-		return count(tree);
-	}
 	bool add(const T value);
 	bool find(const T value);
 	void print(ostream &out) const;
