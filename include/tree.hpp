@@ -40,7 +40,8 @@ private:
 	{
 
 		Node *tr = tree;
-		while ((tr) && (tr->value_ != value))
+		while (tr)
+		       if (tr->value_ != value)
 		{
 			if (value < tr->value_)
 				tr = tr->left;
