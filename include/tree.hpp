@@ -41,11 +41,14 @@ private:
 
 		Node *tr = tree;
 		while (tr)
+		{
 		       if (tr->value_ != value)
 		{
 			if (value < tr->value_)
 				tr = tr->left;
 			else tr = tr->right;
+		} 
+			else break;
 		}
 		if (!tr) return null_tr;
 		else return tr;
