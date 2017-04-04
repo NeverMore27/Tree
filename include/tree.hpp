@@ -36,7 +36,7 @@ private:
 		}
 		delete tr_;
 	}
-	Node *  find_(const T value)
+	Node *  find_(const T &value)
 	{
 
 		Node *&tr = tree;
@@ -60,7 +60,7 @@ private:
 		add_n->right = nullptr;
 
 	}
-	Node* add_(const T value, Node * tr = 0)
+	Node* add_(const T &value, Node * tr = 0)
 	{
 		if (!tree)
 		{
@@ -109,7 +109,7 @@ int count(Node* tr)
 
 		return l + r + 1;
 	}
-void print_pre(const Node * tr, std::ostream &file) const
+void print_pre(const Node * tr, std::ofstream &file) const
 	{
 		if (!tr) return;
 		file << tr->value_ << "  ";
@@ -130,8 +130,8 @@ public:
 	{
 		return tree;
 	};
-	bool add(const T value);
-	bool find(const T value);
+	bool add(const T &value);
+	bool find(const T &value);
 	void print(ostream &out) const;
 	~Tree()
 	{
@@ -171,7 +171,7 @@ void Tree<T>::Node::show(ostream &out, const int level) const
 	if (tr) tr->left->show(out, level + 1);
 }
 template <class T>
-bool Tree<T>::add(const T value)
+bool Tree<T>::add(const T &value)
 {
 	Node *tr = add_(value);
 	if (tr) return true;
@@ -195,7 +195,7 @@ void Tree<T>::file_tree(char* name)
 	}
 }
 template <class T>
-bool Tree<T>::find(const T value)
+bool Tree<T>::find(const T &value)
 {
 	Node *tr = find_(value);
 	if (tr) return true;
