@@ -36,7 +36,7 @@ private:
 		}
 		delete tr_;
 	}
-	Node *  find_(const T &value)
+	Node *  find_(const T &value) const
 	{
 
 		Node *tr = root;
