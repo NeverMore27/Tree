@@ -39,7 +39,7 @@ private:
 	Node *  find_(const T &value)
 	{
 
-		Node *&tr = root;
+		Node *tr = root;
 		while (tr)
 		{
 		       if (tr->value_ != value)
