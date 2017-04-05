@@ -101,12 +101,9 @@ private:
 int count(Node* tr)
 	{
 		if (!tr) return 0;
-		if ((tr->left == nullptr) && (tr->right == nullptr)) return 1;
-			int l, r;
-		if (tr->left) l = count(tr->left); else l = 0;
-		if (tr->right) r = count(tr->right); else r = 0;
-
-
+			int l=0, r=0;
+		if (tr->left) l = count(tr->left); 
+		if (tr->right) r = count(tr->right); 
 		return l + r + 1;
 	}
 void print_pre(const Node * tr, std::ofstream &file) const
@@ -124,26 +121,22 @@ public:
 		root = nullptr;
 		null_tr = nullptr;
 	};
-
-	void file_tree(char* name);
-	Node* tree_one ()
-	{
-		return root;
-	};
-	bool add(const T &value);
-	bool find(const T &value);
-	void print(ostream &out) const;
 	~Tree()
 	{
 		null_tree(root);
 		null_tree(null_tr);
 	};
-	int count_()
-	{
-		return count(root);
-	}
-	void pr(char* name)
-	{
+	Node* tree_one ();
+	void file_tree(char* name);
+	bool add(const T &value);
+	bool find(const T &value);
+	void print(ostream &out) const;
+	int count_();
+	void pr(char* name);
+};
+template <class T>
+void Tree<T>:: pr(char* name)
+{
 		ofstream file(name);
 		if (file.is_open())
 		{
@@ -152,8 +145,17 @@ public:
 		
 			file.close();
 		}
-	}
+}
+template <class T>
+Node*Tree<T>:: tree_one ();
+{
+		return root;
 };
+template <class T>
+int Tree<T>:: count_()
+{
+		return count(root);
+}
 template <class T>
 void  Tree<T>::print(ostream &out) const
 {
