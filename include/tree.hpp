@@ -127,7 +127,6 @@ public:
 		null_tree(null_tr);
 	};
 	Node* tree_one ()
-		Node*Tree<T>:: tree_one ()
 	{
 		return root;
 	};
