@@ -67,7 +67,7 @@ private:
 			root = new Node(value);
 			root->left = nullptr;
 			root->right = nullptr;
-			return tree;
+			return root;
 		}
 		if (!tr) tr = root;
 		if ((tr) && (tr->value_ != value))
