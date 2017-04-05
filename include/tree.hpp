@@ -147,7 +147,7 @@ void Tree<T>:: pr(char* name)
 		}
 }
 template <class T>
-Node*Tree<T>:: tree_one ();
+Node*Tree<T>:: tree_one ()
 {
 		return root;
 };
