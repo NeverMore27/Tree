@@ -126,7 +126,11 @@ public:
 		null_tree(root);
 		null_tree(null_tr);
 	};
-	Node* tree_one ();
+	Node* tree_one ()
+		Node*Tree<T>:: tree_one ()
+	{
+		return root;
+	};
 	void file_tree(char* name);
 	bool add(const T &value);
 	bool find(const T &value);
@@ -146,11 +150,6 @@ void Tree<T>:: pr(char* name)
 			file.close();
 		}
 }
-template <class T>
-Node*Tree<T>:: tree_one ()
-{
-		return root;
-};
 template <class T>
 int Tree<T>:: count_()
 {
