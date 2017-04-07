@@ -23,7 +23,12 @@ SCENARIO("find")
 }
 SCENARIO("file")
 {
-	Tree<int> a;
+	Tree<int> a, b;
+	b.add(3);
+	b.add(2);
+	b.add(1);
+	b.add(5);
+	b.pr("Tr.txt");
 	a.file_tree("Tr.txt");
 	bool b = a.find(3);
 	REQUIRE(b == 1);
