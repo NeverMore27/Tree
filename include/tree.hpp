@@ -119,12 +119,10 @@ public:
 	Tree()
 	{
 		root = nullptr;
-		null_tr = nullptr;
 	};
 	~Tree()
 	{
 		null_tree(root);
-		null_tree(null_tr);
 	};
 	Node* tree_one ()
 	{
@@ -157,47 +155,47 @@ int Tree<T>:: count_() const
 template <class T>
 void  Tree<T>::print(ostream &out) const
 {
-	root->show(out, 0);
+		root->show(out, 0);
 }
 template <class T>
 void Tree<T>::Node::show(ostream &out, int level) const
 {
-	const Node *tr = this;
-	if (tr) tr->right->show(out, level + 1);
-	for (int i = 0; i<level; i++)
-		out << "   ";
-	if (tr) out << tr->value_ << endl;
-	else out << "End" << endl;
-	if (tr) tr->left->show(out, level + 1);
+		const Node *tr = this;
+		if (tr) tr->right->show(out, level + 1);
+		for (int i = 0; i<level; i++)
+			out << "   ";
+		if (tr) out << tr->value_ << endl;
+		else out << "End" << endl;
+		if (tr) tr->left->show(out, level + 1);
 }
 template <class T>
 bool Tree<T>::add(const T &value)
 {
-	Node *tr = add_(value);
-	if (tr) return true;
-	else    return false;
+		Node *tr = add_(value);
+		if (tr) return true;
+		else    return false;
 }
 template <class T>
 void Tree<T>::file_tree(char* name)
 {
-	ifstream file(name);
-	if (file.is_open())
-	{
-		int i_max;
-		file >> i_max;
-		for (int i = 0; i < i_max; ++i)
+		ifstream file(name);
+		if (file.is_open())
 		{
-			T node;
-			file >> node;
-			add(node);
+			int i_max;
+			file >> i_max;
+			for (int i = 0; i < i_max; ++i)
+			{
+				T node;
+				file >> node;
+				add(node);
+			}
+			file.close();
 		}
-		file.close();
-	}
 }
 template <class T>
 bool Tree<T>::find(const T &value)
 {
-	Node *tr = find_(value);
-	if (tr) return true;
-	else    return false;
+		Node *tr = find_(value);
+		if (tr) return true;
+		else    return false;
 }
