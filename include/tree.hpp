@@ -17,10 +17,10 @@ private:
 		Node() {};
 		Node(const T value) : value_(value) { };
 		~Node() {};
-		void show(ostream &out, const int level) const;
+		void show(ostream &out, int level) const;
 	};
 
-	Node *root, *null_tr;
+	Node *root;
 	void null_tree(Node *tr_)
 	{
 		if (!tr_) return;
@@ -50,7 +50,7 @@ private:
 		} 
 			else break;
 		}
-		if (!tr) return null_tr;
+		if (!tr) return nullptr;
 		else return tr;
 	}
 	void add_node(Node *&add_n, T value)
@@ -98,7 +98,7 @@ private:
 		}
 		return 0;
 	}
-int count(Node* tr)
+int count(Node* tr) const
 	{
 		if (!tr) return 0;
 			int l=0, r=0;
@@ -134,11 +134,11 @@ public:
 	bool add(const T &value);
 	bool find(const T &value);
 	void print(ostream &out) const;
-	int count_();
-	void pr(char* name);
+	int count_() const;
+	void pr(char* name) const;
 };
 template <class T>
-void Tree<T>:: pr(char* name)
+void Tree<T>:: pr(char* name) const
 {
 		ofstream file(name);
 		if (file.is_open())
@@ -150,7 +150,7 @@ void Tree<T>:: pr(char* name)
 		}
 }
 template <class T>
-int Tree<T>:: count_()
+int Tree<T>:: count_() const
 {
 		return count(root);
 }
@@ -160,7 +160,7 @@ void  Tree<T>::print(ostream &out) const
 	root->show(out, 0);
 }
 template <class T>
-void Tree<T>::Node::show(ostream &out, const int level) const
+void Tree<T>::Node::show(ostream &out, int level) const
 {
 	const Node *tr = this;
 	if (tr) tr->right->show(out, level + 1);
