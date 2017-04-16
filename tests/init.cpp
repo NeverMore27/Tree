@@ -21,10 +21,9 @@ SCENARIO("find")
 	bool b = a.find(5);
 	REQUIRE(b == 1);
 }
-SCENARIO("find")
+SCENARIO("del")
 {
 	Tree<int> a;
-	Tree <int> a;
 	a.add(5);
 	a.add(4);
 	a.add(7);
