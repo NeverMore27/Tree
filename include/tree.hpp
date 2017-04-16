@@ -1,6 +1,6 @@
-
 #include <fstream>
 #include <iostream>
+
 
 using namespace std;
 
@@ -42,12 +42,12 @@ private:
 		Node *tr = root;
 		while (tr)
 		{
-		       if (tr->value_ != value)
-		{
-			if (value < tr->value_)
-				tr = tr->left;
-			else tr = tr->right;
-		} 
+			if (tr->value_ != value)
+			{
+				if (value < tr->value_)
+					tr = tr->left;
+				else tr = tr->right;
+			}
 			else break;
 		}
 		if (!tr) return nullptr;
@@ -98,15 +98,15 @@ private:
 		}
 		return 0;
 	}
-int count(Node* tr) const
+	int count(Node* tr) const
 	{
 		if (!tr) return 0;
-			int l=0, r=0;
-		if (tr->left) l = count(tr->left); 
-		if (tr->right) r = count(tr->right); 
+		int l = 0, r = 0;
+		if (tr->left) l = count(tr->left);
+		if (tr->right) r = count(tr->right);
 		return l + r + 1;
 	}
-void print_pre(const Node * tr, std::ofstream &file) const
+	void print_pre(const Node * tr, std::ofstream &file) const
 	{
 		if (!tr) return;
 		file << tr->value_ << "  ";
@@ -115,6 +115,35 @@ void print_pre(const Node * tr, std::ofstream &file) const
 		if (tr->right)
 			print_pre(tr->right, file);
 	}
+	void Delete(Node **Tree, T &value)
+	{
+		Node *q;
+
+		if (*Tree == nullptr) return;
+		else
+			if (value<(**Tree).value_) Delete(&((**Tree).left), value);
+			else
+				if (value>(**Tree).value_) Delete(&((**Tree).right), value);
+				else {
+					q = *Tree;
+					if ((*q).right ==nullptr) { *Tree = (*q).left; delete q; }
+					else
+						if ((*q).left == nullptr) { *Tree = (*q).right; delete q; }
+						else Delete_(&((*q).left), &q);
+				}
+	}
+	void Delete_(Node **r, Node **q)
+	{
+		Node *s;
+
+		if ((**r).right == nullptr)		
+		{
+			(**q).value_ = (**r).value_; *q = *r;
+			s = *r; *r = (**r).left; delete s;
+		}
+		else Delete_(&((**r).right), q);
+	}
+
 public:
 	Tree()
 	{
@@ -124,7 +153,7 @@ public:
 	{
 		null_tree(root);
 	};
-	Node* tree_one ()
+	Node* tree_one()
 	{
 		return root;
 	};
@@ -133,69 +162,75 @@ public:
 	bool find(const T &value);
 	void print(ostream &out) const;
 	int count_() const;
+	bool del(T value) 
+	{
+		Delete(&root, value);
+		return find(value);
+	}
 	void pr(char* name) const;
 };
+
 template <class T>
-void Tree<T>:: pr(char* name) const
+void Tree<T>::pr(char* name) const
 {
-		ofstream file(name);
-		if (file.is_open())
-		{
-			file << count_()<<" ";
-				print_pre(root, file);
-		
-			file.close();
-		}
+	ofstream file(name);
+	if (file.is_open())
+	{
+		file << count_() << " ";
+		print_pre(root, file);
+
+		file.close();
+	}
 }
 template <class T>
-int Tree<T>:: count_() const
+int Tree<T>::count_() const
 {
-		return count(root);
+	return count(root);
 }
 template <class T>
 void  Tree<T>::print(ostream &out) const
 {
-		root->show(out, 0);
+	root->show(out, 0);
 }
 template <class T>
 void Tree<T>::Node::show(ostream &out, int level) const
 {
-		const Node *tr = this;
-		if (tr) tr->right->show(out, level + 1);
-		for (int i = 0; i<level; i++)
-			out << "   ";
-		if (tr) out << tr->value_ << endl;
-		else out << "End" << endl;
-		if (tr) tr->left->show(out, level + 1);
+	const Node *tr = this;
+	if (tr) tr->right->show(out, level + 1);
+	for (int i = 0; i<level; i++)
+		out << "   ";
+	if (tr) out << tr->value_ << endl;
+	else out << "End" << endl;
+	if (tr) tr->left->show(out, level + 1);
 }
 template <class T>
 bool Tree<T>::add(const T &value)
 {
-		Node *tr = add_(value);
-		if (tr) return true;
-		else    return false;
+	Node *tr = add_(value);
+	if (tr) return true;
+	else    return false;
 }
 template <class T>
 void Tree<T>::file_tree(char* name)
 {
-		ifstream file(name);
-		if (file.is_open())
+	ifstream file(name);
+	if (file.is_open())
+	{
+		int i_max;
+		file >> i_max;
+		for (int i = 0; i < i_max; ++i)
 		{
-			int i_max;
-			file >> i_max;
-			for (int i = 0; i < i_max; ++i)
-			{
-				T node;
-				file >> node;
-				add(node);
-			}
-			file.close();
+			T node;
+			file >> node;
+			add(node);
 		}
+		file.close();
+	}
 }
 template <class T>
 bool Tree<T>::find(const T &value)
 {
-		Node *tr = find_(value);
-		if (tr) return true;
-		else    return false;
+	Node *tr = find_(value);
+	if (tr) return true;
+	else    return false;
 }
