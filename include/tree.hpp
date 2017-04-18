@@ -236,7 +236,7 @@ void Tree<T>::file_tree(char* name)
 	}
 	catch (int)
 	{
-		return 0;
+		return;
 	}
 
 	if (file.is_open())
