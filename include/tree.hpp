@@ -134,9 +134,9 @@ private:
 				if (value>(**Tree).value_) Delete(&((**Tree).right), value);
 				else {
 					tr = *Tree;
-					if ((*tr).right ==nullptr) { *Tree = (*tr).left; delete q; }
+					if ((*tr).right ==nullptr) { *Tree = (*tr).left; delete tr; }
 					else
-						if ((*tr).left == nullptr) { *Tree = (*tr).right; delete q; }
+						if ((*tr).left == nullptr) { *Tree = (*tr).right; delete tr; }
 						else Delete_(&((*tr).left), &tr);
 				}
 	}
