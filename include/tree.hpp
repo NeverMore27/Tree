@@ -62,6 +62,7 @@ private:
 	}
 	Node* add_(const T &value, Node * tr = 0)
 	{
+		
 		if (!root)
 		{
 			root = new Node(value);
@@ -108,7 +109,14 @@ private:
 	}
 	void print_pre(const Node * tr, std::ofstream &file) const
 	{
-		if (!tr) return;
+		try
+		{
+			if (!tr) throw 1;
+		}
+		catch (int i = 1)
+		{
+			return;
+		}
 		file << tr->value_ << "  ";
 		if (tr->left)
 			print_pre(tr->left, file);
@@ -164,11 +172,28 @@ public:
 	int count_() const;
 	bool del(T value) 
 	{
+		try
+		{
+			if (find(value) == 0) throw 1;
+		}
+		catch (int i = 1)
+		{
+			return 0;
+		}
+		
 		Delete(&root, value);
-		return find(value);
+		return !find(value);
 	}
 	void pr(char* name) const;
 };
+void main()
+{
+	Tree<int>a;
+	a.add(7);
+	bool b=a.del(2);
+	cout << b;
+	system("pause");
+}
 
 template <class T>
 void Tree<T>::pr(char* name) const
@@ -214,6 +239,15 @@ template <class T>
 void Tree<T>::file_tree(char* name)
 {
 	ifstream file(name);
+	try
+	{
+		if (file.is_open()==0) throw 1;
+	}
+	catch (int i = 1)
+	{
+		return 0;
+	}
+
 	if (file.is_open())
 	{
 		int i_max;
