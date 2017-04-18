@@ -128,6 +128,7 @@ private:
 		Node *tr;
 
 		if (*Tree == nullptr) return false;
+		if (find(value)==0) return false;
 		else
 			if (value<(**Tree).value_) Delete(&((**Tree).left), value);
 			else
