@@ -123,11 +123,11 @@ private:
 		if (tr->right)
 			print_pre(tr->right, file);
 	}
-	void Delete(Node **Tree, T &value)
+	bool Delete(Node **Tree, T &value)
 	{
 		Node *tr;
 
-		if (*Tree == nullptr) return;
+		if (*Tree == nullptr) return false;
 		else
 			if (value<(**Tree).value_) Delete(&((**Tree).left), value);
 			else
@@ -139,6 +139,7 @@ private:
 						if ((*tr).left == nullptr) { *Tree = (*tr).right; delete tr; }
 						else Delete_(&((*tr).left), &tr);
 				}
+		return true;
 	}
 	void Delete_(Node **r, Node **tr)
 	{
@@ -172,17 +173,8 @@ public:
 	int count_() const;
 	bool del(T value) 
 	{
-		try
-		{
-			if (find(value) == 0) throw 1;
-		}
-		catch (int)
-		{
-			return 0;
-		}
-		
-		Delete(&root, value);
-		return !find(value);
+
+		return Delete(&root, value);
 	}
 	void pr(char* name) const;
 };
@@ -230,15 +222,6 @@ public:
 	void Tree<T>::file_tree(char* name)
 	{
 		ifstream file(name);
-		try
-		{
-			if (file.is_open()==0) throw 1;
-		}
-		catch (int)
-		{
-			return;
-		}
-	
 		if (file.is_open())
 		{
 			int i_max;
@@ -250,6 +233,9 @@ public:
 				add(node);
 			}
 			file.close();
+		}
+		else {
+			throw "";
 		}
 	}	
 	template <class T>
