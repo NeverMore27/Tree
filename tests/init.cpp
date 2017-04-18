@@ -31,8 +31,8 @@ SCENARIO("del1")
 	a.add(2);
 	a.add(6);
 	a.del(7);
-	bool b = a.find(7);
-	REQUIRE(b == 1);
+	bool b = a.find(2);
+	REQUIRE(b == 0);
 }
 SCENARIO("del2")
 {
@@ -44,8 +44,8 @@ SCENARIO("del2")
 	a.add(2);
 	a.add(6);
 	a.del(2);
-	bool b = a.find(7);
-	REQUIRE(b == 1);
+	bool b = a.find(2);
+	REQUIRE(b == 0);
 }
 SCENARIO("del3")
 {
@@ -58,8 +58,8 @@ SCENARIO("del3")
 	a.add(6);
 	a.add(1);
 	a.del(2);
-	bool b = a.find(7);
-	REQUIRE(b == 1);
+	bool b = a.find(2);
+	REQUIRE(b == 0);
 }
 SCENARIO("del4")
 {
@@ -72,8 +72,8 @@ SCENARIO("del4")
 	a.add(6);
 	a.add(3);
 	a.del(2);
-	bool b = a.find(7);
-	REQUIRE(b == 1);
+	bool b = a.find(2);
+	REQUIRE(b == 0);
 }
 SCENARIO("del5")
 {
@@ -85,8 +85,7 @@ SCENARIO("del5")
 	a.add(2);
 	a.add(6);
 	a.add(3);
-	a.del(15);
-	bool b = a.find(7);
+	bool b = a.del(15);;
 	REQUIRE(b == 0);
 }
 SCENARIO("file")
