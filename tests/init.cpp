@@ -32,7 +32,7 @@ SCENARIO("del1")
 	a.add(6);
 	a.del(7);
 	bool b = a.find(7);
-	REQUIRE(b == 0);
+	REQUIRE(b == 1);
 }
 SCENARIO("del2")
 {
@@ -45,7 +45,7 @@ SCENARIO("del2")
 	a.add(6);
 	a.del(2);
 	bool b = a.find(7);
-	REQUIRE(b == 0);
+	REQUIRE(b == 1);
 }
 SCENARIO("del3")
 {
@@ -59,7 +59,7 @@ SCENARIO("del3")
 	a.add(1);
 	a.del(2);
 	bool b = a.find(7);
-	REQUIRE(b == 0);
+	REQUIRE(b == 1);
 }
 SCENARIO("del4")
 {
@@ -73,7 +73,7 @@ SCENARIO("del4")
 	a.add(3);
 	a.del(2);
 	bool b = a.find(7);
-	REQUIRE(b == 0);
+	REQUIRE(b == 1);
 }
 SCENARIO("del5")
 {
