@@ -21,7 +21,7 @@ SCENARIO("find")
 	bool b = a.find(5);
 	REQUIRE(b == 1);
 }
-SCENARIO("del")
+SCENARIO("del1")
 {
 	Tree<int> a;
 	a.add(5);
@@ -31,6 +31,61 @@ SCENARIO("del")
 	a.add(2);
 	a.add(6);
 	a.del(7);
+	bool b = a.find(7);
+	REQUIRE(b == 0);
+}
+SCENARIO("del2")
+{
+	Tree<int> a;
+	a.add(5);
+	a.add(4);
+	a.add(7);
+	a.add(8);
+	a.add(2);
+	a.add(6);
+	a.del(2);
+	bool b = a.find(7);
+	REQUIRE(b == 0);
+}
+SCENARIO("del3")
+{
+	Tree<int> a;
+	a.add(5);
+	a.add(4);
+	a.add(7);
+	a.add(8);
+	a.add(2);
+	a.add(6);
+	a.add(1);
+	a.del(2);
+	bool b = a.find(7);
+	REQUIRE(b == 0);
+}
+SCENARIO("del4")
+{
+	Tree<int> a;
+	a.add(5);
+	a.add(4);
+	a.add(7);
+	a.add(8);
+	a.add(2);
+	a.add(6);
+	a.add(3);
+	a.del(2);
+	bool b = a.find(7);
+	REQUIRE(b == 0);
+}
+SCENARIO("del5")
+{
+	Tree<int> a;
+	a.add(5);
+	a.add(4);
+	a.add(7);
+	a.add(8);
+	a.add(2);
+	a.add(6);
+	a.add(3);
+	a.del(15);
 	bool b = a.find(7);
 	REQUIRE(b == 0);
 }
