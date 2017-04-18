@@ -125,7 +125,7 @@ private:
 	}
 	void Delete(Node **Tree, T &value)
 	{
-		Node *q;
+		Node *tr;
 
 		if (*Tree == nullptr) return;
 		else
@@ -133,23 +133,23 @@ private:
 			else
 				if (value>(**Tree).value_) Delete(&((**Tree).right), value);
 				else {
-					q = *Tree;
-					if ((*q).right ==nullptr) { *Tree = (*q).left; delete q; }
+					tr = *Tree;
+					if ((*tr).right ==nullptr) { *Tree = (*tr).left; delete q; }
 					else
-						if ((*q).left == nullptr) { *Tree = (*q).right; delete q; }
-						else Delete_(&((*q).left), &q);
+						if ((*tr).left == nullptr) { *Tree = (*tr).right; delete q; }
+						else Delete_(&((*tr).left), &tr);
 				}
 	}
-	void Delete_(Node **r, Node **q)
+	void Delete_(Node **r, Node **tr)
 	{
-		Node *s;
+		Node *tr_;
 
 		if ((**r).right == nullptr)		
 		{
-			(**q).value_ = (**r).value_; *q = *r;
-			s = *r; *r = (**r).left; delete s;
+			(**tr).value_ = (**r).value_; *tr= *r;
+			tr_ = *r; *r = (**r).left; delete tr_;
 		}
-		else Delete_(&((**r).right), q);
+		else Delete_(&((**r).right), tr);
 	}
 
 public:
