@@ -113,7 +113,7 @@ private:
 		{
 			if (!tr) throw 1;
 		}
-		catch (int i = 1)
+		catch (int)
 		{
 			return;
 		}
