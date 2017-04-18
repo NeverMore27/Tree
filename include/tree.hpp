@@ -176,7 +176,7 @@ public:
 		{
 			if (find(value) == 0) throw 1;
 		}
-		catch (int i = 1)
+		catch (int)
 		{
 			return 0;
 		}
@@ -186,15 +186,6 @@ public:
 	}
 	void pr(char* name) const;
 };
-void main()
-{
-	Tree<int>a;
-	a.add(7);
-	bool b=a.del(2);
-	cout << b;
-	system("pause");
-}
-
 template <class T>
 void Tree<T>::pr(char* name) const
 {
@@ -243,7 +234,7 @@ void Tree<T>::file_tree(char* name)
 	{
 		if (file.is_open()==0) throw 1;
 	}
-	catch (int i = 1)
+	catch (int)
 	{
 		return 0;
 	}
