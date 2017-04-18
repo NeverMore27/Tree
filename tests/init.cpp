@@ -34,7 +34,7 @@ SCENARIO("del1")
 	bool b = a.find(7);
 	REQUIRE(b == 0);
 }
-SCENARIO("del2")
+SCENARIO("del2") 
 {
 	Tree<int> a;
 	a.add(5);
