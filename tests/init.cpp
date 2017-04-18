@@ -31,7 +31,7 @@ SCENARIO("del1")
 	a.add(2);
 	a.add(6);
 	a.del(7);
-	bool b = a.find(2);
+	bool b = a.find(7);
 	REQUIRE(b == 0);
 }
 SCENARIO("del2")
