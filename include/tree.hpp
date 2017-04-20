@@ -144,14 +144,15 @@ private:
 	}
 	void Delete_(Node **r, Node **tr)
 	{
-		Node *tr_;
-
-		if ((**r).right == nullptr)		
+		if ((**r).right != nullptr)
 		{
-			(**tr).value_ = (**r).value_; *tr= *r;
-			tr_ = *r; *r = (**r).left; delete tr_;
+			Node* min = (*r)->right;
+			while (min->left)
+				min = min->left;
+			T val_ = min->value_;
+			delete min;
+			(**r).value_ = val_;
 		}
-		else Delete_(&((**r).right), tr);
 	}
 	bool isEqual(Node* root2, const Node* root1)
 	{
