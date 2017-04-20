@@ -153,12 +153,25 @@ private:
 		}
 		else Delete_(&((**r).right), tr);
 	}
+	bool isEqual(Node* root2, const Node* root1)
+	{
+		return (root2&&root1 ? root2->value_ == root1->value_&&isEqual(root2->left, root1->left) && isEqual(root2->right, root1->right) : !root2 && !root1);
+	};
 
 public:
 	Tree()
 	{
 		root = nullptr;
 	};
+	Tree(std::initializer_list<T> list)
+	{
+		root = nullptr;
+		for (auto& item : list)
+		{
+			add(item);
+		}
+
+	}
 	~Tree()
 	{
 		null_tree(root);
@@ -172,6 +185,11 @@ public:
 	bool find(const T &value);
 	void print(ostream &out) const;
 	int count_() const;
+	bool operator ==(const Tree<T> &a)
+	{
+		
+		return isEqual(root, a.root);
+	}
 	bool del(T value) 
 	{
 
