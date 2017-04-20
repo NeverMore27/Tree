@@ -138,11 +138,11 @@ private:
 					if ((*tr).right ==nullptr) { *Tree = (*tr).left; delete tr; }
 					else
 						if ((*tr).left == nullptr) { *Tree = (*tr).right; delete tr; }
-						else Delete_(&((*tr).left), &tr);
+						else Delete_( &tr);
 				}
 		return true;
 	}
-	void Delete_(Node **r, Node **tr)
+	void Delete_(Node **tr)
 	{
 		
 		if ((**tr).right != nullptr)
