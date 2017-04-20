@@ -185,6 +185,11 @@ public:
 	bool find(const T &value);
 	void print(ostream &out) const;
 	int count_() const;
+	bool isEmpty()
+	{
+		Node* root1 = nullptr;
+		return isEqual(root, root1);
+	}
 	bool operator ==(const Tree<T> &a)
 	{
 		
