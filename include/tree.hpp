@@ -145,15 +145,15 @@ private:
 	void Delete_(Node **r, Node **tr)
 	{
 		
-		if ((**q).right != nullptr)
+		if ((**tr).right != nullptr)
 		{
 			Node* min; T val_;
-			min = (*q)->right;
+			min = (*tr)->right;
 			while (min->left)
 				min = min->left;
 			val_ = min->value_;
 			del( min->value_);
-			(**q).value_ = val_;
+			(**tr).value_ = val_;
 		}
 	}
 	bool isEqual(Node* root2, const Node* root1)
