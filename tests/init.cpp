@@ -106,3 +106,45 @@ SCENARIO("file")
 	b = a.find(5);
 	REQUIRE(b == 1);
 }
+SCENARIO("BST delete non inserted element", "[delete]")
+{ 
+	Tree<int> tree = {8}; 
+	REQUIRE( !tree.del(4) ); 
+	REQUIRE( !tree.isEmpty() ); 
+} 
+SCENARIO("BST delete root without children", "[delete]") 
+{ 
+	Tree<int> tree = {8}; 
+	REQUIRE( tree.del(8) ); 
+	REQUIRE( tree.isEmpty() ); 
+} 
+SCENARIO("BST delete root with one child", "[delete]") 
+{ 
+	Tree<int> tree = {8, 4, 3}; 
+	REQUIRE( tree.remove(8) ); 
+	REQUIRE( tree == Tree<int>({4, 3}) ); 
+} 
+SCENARIO("BST delete root with children", "[delete]") 
+{ 
+	Tree<int> tree = {8, 4, 3, 10, 9, 13, 11, 12}; 
+	REQUIRE( tree.remove(8) ); 
+	REQUIRE( tree == BinarySearchTree<int>({9, 4, 3, 10, 13, 11, 12}) ); 
+}
+SCENARIO("BST delete non root without children", "[delete]") 
+{ 
+	Tree<int> tree = {8, 4, 3, 10, 9, 13, 11, 12}; 
+	REQUIRE( tree.remove(3) ); 
+	REQUIRE( tree == BinarySearchTree<int>({8, 4, 10, 9, 13, 11, 12}) ); 
+}
+SCENARIO("BST delete non root with one child", "[delete]") 
+{ 
+	Tree<int> tree = {8, 4, 3, 10, 9, 13, 11, 12}; 
+	REQUIRE( tree.remove(11) ); 
+	REQUIRE( tree == BinarySearchTree<int>({8, 4, 3, 10, 9, 13, 12}) ); 
+}
+SCENARIO("BST delete non root with children", "[delete]")
+{ 
+	Tree<int> tree = {8, 4, 3, 10, 9, 13, 11, 12}; 
+	REQUIRE( tree.remove(10) ); 
+	REQUIRE( tree == BinarySearchTree<int>({8, 4, 3, 11, 9, 13, 12}) ); 
+} 
