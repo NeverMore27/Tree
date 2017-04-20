@@ -1,3 +1,4 @@
+
 #include <fstream>
 #include <iostream>
 
@@ -113,7 +114,7 @@ private:
 		{
 			if (!tr) throw 1;
 		}
-		catch (int)
+		catch (int i = 1)
 		{
 			return;
 		}
@@ -123,42 +124,52 @@ private:
 		if (tr->right)
 			print_pre(tr->right, file);
 	}
-	bool Delete(Node **Tree, T &value)
+	void Delete(Node **Tree, T &value)
 	{
-		Node *tr;
+		Node *q;
 
-		if (*Tree == nullptr) return false;
-		if (find(value)==0) return false;
+		if (*Tree == nullptr) return;
 		else
 			if (value<(**Tree).value_) Delete(&((**Tree).left), value);
 			else
 				if (value>(**Tree).value_) Delete(&((**Tree).right), value);
 				else {
-					tr = *Tree;
-					if ((*tr).right ==nullptr) { *Tree = (*tr).left; delete tr; }
+					q = *Tree;
+					if ((*q).right ==nullptr) { *Tree = (*q).left; delete q; }
 					else
-						if ((*tr).left == nullptr) { *Tree = (*tr).right; delete tr; }
-						else Delete_(&((*tr).left), &tr);
+						if ((*q).left == nullptr) { *Tree = (*q).right; delete q; }
+						else Delete_(&((*q).left), &q);
 				}
-		return true;
 	}
-	void Delete_(Node **r, Node **tr)
+	void Delete_(Node **r, Node **q)
 	{
-		Node *tr_;
+		Node *s;
 
 		if ((**r).right == nullptr)		
 		{
-			(**tr).value_ = (**r).value_; *tr= *r;
-			tr_ = *r; *r = (**r).left; delete tr_;
+			(**q).value_ = (**r).value_; *q = *r;
+			s = *r; *r = (**r).left; delete s;
 		}
-		else Delete_(&((**r).right), tr);
+		else Delete_(&((**r).right), q);
 	}
-
+	bool isEqual(Node* root2, const Node* root1)
+	{
+		return (root2&&root1 ? root2->value_ == root1->value_&&isEqual(root2->left, root1->left) && isEqual(root2->right, root1->right) : !root2 && !root1);
+	};
 public:
 	Tree()
 	{
 		root = nullptr;
 	};
+	Tree(std::initializer_list<T> list)
+	{
+		root = nullptr;
+		for (auto& item : list)
+		{
+			add(item);
+		}
+
+	}
 	~Tree()
 	{
 		null_tree(root);
@@ -174,76 +185,104 @@ public:
 	int count_() const;
 	bool del(T value) 
 	{
-
-		return Delete(&root, value);
+		try
+		{
+			if (find(value) == 0) throw 1;
+		}
+		catch (int i = 1)
+		{
+			return 0;
+		}
+		
+		Delete(&root, value);
+		return !find(value);
 	}
 	void pr(char* name) const;
+	bool operator ==(const Tree<T> &a)
+	{
+		
+		return isEqual(root, a.root);
+	}
 };
-	template <class T>
-	void Tree<T>::pr(char* name) const
-	{
-		ofstream file(name);
-		if (file.is_open())
-		{
-			file << count_() << " ";
-			print_pre(root, file);
+void main()
+{
+	Tree<int> a = { 8, 4, 3 };
+	Tree<int> b = { 8, 4, 3 };
+	bool f = (a == b);
+	cout << f;
+	system("pause");
+}
 
-			file.close();
-		}
-	}
-	template <class T>
-	int Tree<T>::count_() const
+template <class T>
+void Tree<T>::pr(char* name) const
+{
+	ofstream file(name);
+	if (file.is_open())
 	{
-		return count(root);
+		file << count_() << " ";
+		print_pre(root, file);
+
+		file.close();
 	}
-	template <class T>
-	void  Tree<T>::print(ostream &out) const
+}
+template <class T>
+int Tree<T>::count_() const
+{
+	return count(root);
+}
+template <class T>
+void  Tree<T>::print(ostream &out) const
+{
+	root->show(out, 0);
+}
+template <class T>
+void Tree<T>::Node::show(ostream &out, int level) const
+{
+	const Node *tr = this;
+	if (tr) tr->right->show(out, level + 1);
+	for (int i = 0; i<level; i++)
+		out << "   ";
+	if (tr) out << tr->value_ << endl;
+	else out << "End" << endl;
+	if (tr) tr->left->show(out, level + 1);
+}
+template <class T>
+bool Tree<T>::add(const T &value)
+{
+	Node *tr = add_(value);
+	if (tr) return true;
+	else    return false;
+}
+template <class T>
+void Tree<T>::file_tree(char* name)
+{
+	ifstream file(name);
+	try
 	{
-		root->show(out, 0);
+		if (file.is_open()==0) throw 1;
 	}
-	template <class T>
-	void Tree<T>::Node::show(ostream &out, int level) const
+	catch (int i = 1)
 	{
-		const Node *tr = this;
-		if (tr) tr->right->show(out, level + 1);
-		for (int i = 0; i<level; i++)
-			out << "   ";
-		if (tr) out << tr->value_ << endl;
-		else out << "End" << endl;
-		if (tr) tr->left->show(out, level + 1);
+		return 0;
 	}
-	template <class T>
-	bool Tree<T>::add(const T &value)
+
+	if (file.is_open())
 	{
-		Node *tr = add_(value);
-		if (tr) return true;
-		else    return false;
-	}
-	template <class T>
-	void Tree<T>::file_tree(char* name)
-	{
-		ifstream file(name);
-		if (file.is_open())
+		int i_max;
+		file >> i_max;
+		for (int i = 0; i < i_max; ++i)
 		{
-			int i_max;
-			file >> i_max;
-			for (int i = 0; i < i_max; ++i)
-			{
-				T node;
-				file >> node;
-				add(node);
-			}
-			file.close();
+			T node;
+			file >> node;
+			add(node);
 		}
-		else {
-			throw "";
-		}
-	}	
-	template <class T>
-	bool Tree<T>::find(const T &value)
-	{
-		Node *tr = find_(value);
-		if (tr) return true;
-		else    return false;
+		file.close();
 	}
-	
+}
+template <class T>
+bool Tree<T>::find(const T &value)
+{
+	Node *tr = find_(value);
+	if (tr) return true;
+	else    return false;
+}
